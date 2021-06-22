@@ -1,0 +1,47 @@
+body{
+background-color: gray;
+background-image: url("test.jpg");
+background-size: cover;
+}
+.wrap{
+width: 414px;
+height: 432px;
+border: solid rgb(238,238,238) 2px;
+background-color: white;
+text-align: center;
+transform: translate(120%,50%);
+/*margin: 0px auto;*/
+}
+.wrap .title{margin-top: 6px;
+margin-bottom: 16px;
+margin: auto;
+font-size: 20px;
+color: rgb(51,51,51);
+text-align: center;/*居中*/
+}
+.wrap .infor{
+text-align: center;
+color: #666;
+font-size: 16px;
+margin-bottom: 36px;
+}
+.wrap .infor a{
+text-decoration: none;
+color:#3481cf;
+}
+.wrap #form{
+text-align: center;
+height:150px ;
+width: 272px;
+margin: 0px auto;
+}
+.wrap #form .input{
+height: 38px;
+width: 268px;
+box-sizing: border-box;
+padding: 10px;
+padding-right: 0px;
+margin-bottom: 17px;
+border-radius: 3px;
+border: solid rgb(214,214,21) 1px;
+}
