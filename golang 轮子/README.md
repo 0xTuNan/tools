@@ -29,7 +29,7 @@ response := lib.Get(url)
 ## json解析库
 还有一个很好用的json解析库
 ~~~
-https://github.com/tidwall/gjs
+https://github.com/tidwall/gjson
 它上面有文档，可以看看，转为自己需要的数据。
 ~~~
 
