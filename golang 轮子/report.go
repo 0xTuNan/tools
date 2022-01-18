@@ -8,22 +8,17 @@ import (
 )
 
 // Get 获取待爬取网站的html
-func Get(url string) string {
+func ValueGet(a string) string {
 	ua := Readua()
-	res,err := http.Get(url)
-	res.Header.Add("access_token", "")
-	res.Header.Set("User-Agent",ua)
-	res.Header.Set("X-Forwarded-For","127.0.0.1")
-	res.Header.Set("Referer","www.google.com")
-	if err !=nil {
-		fmt.Println("http get err ",err)
-		return "err"
-	}
-	defer res.Body.Close()
-	Body,err := ioutil.ReadAll(res.Body)
+	url := a
+	client := &http.Client{}
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Add("User-Agent", ua)
+	resp, _ := client.Do(req)
+	defer resp.Body.Close()
+	Body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("read error", err)
-		return "err"
 	}
 	doc := string(Body)
 	return doc
