@@ -24,24 +24,22 @@ func ValueGet(a string) string {
 	return doc
 }
 
-// Post POST爬取数据
-func Post(url string,dT url.Values)string {
+// Post 发post包，三个参数，分别是url，body，cookie
+func Post(a string, body string, cookie string) string {
 	ua := Readua()
-	data := dT
-	res, err := http.PostForm(url , data)
-	res.Header.Set("User-Agent",ua)
-	res.Header.Set("X-Forwarded-For","127.0.0.1")
-	res.Header.Set("Referer","www.google.com")
-	res.Header.Add("Authorization", "Bearer QSlHffXmCAILIOHNGXToq4LsP2yX64VQhEBZ7Ei4")
+	url := a
+	client := &http.Client{}
+
+	payload := strings.NewReader(body)
+	req, _ := http.NewRequest("POST", url, payload)
+	req.Header.Add("User-Agent", ua)
+	req.Header.Add("Cookie", cookie)
+	resp, _ := client.Do(req)
+	defer resp.Body.Close()
+	Body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println("http post err",err)
-		return "err"
+		fmt.Println("read error", err)
 	}
-	defer res.Body.Close()
-	b, err := ioutil.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println("read err",err)
-		return "err"
-	}
-	return string(b)
+	doc := string(Body)
+	return doc
 }
